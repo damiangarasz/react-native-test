@@ -1,12 +1,17 @@
-import { Canvas, Circle } from "@shopify/react-native-skia";
+import { Canvas, Circle, SkImage, useImage } from "@shopify/react-native-skia";
 import { useEffect, useState } from "react";
 
 const App = () => {
-  const [hero, setHero] = useState([]);
+  const [hero, setHero] = useState<(SkImage | null)[]>();
   useEffect(() => {
     const arr = [];
-    const HeroIdle = new Image();
-    HeroIdle.src = "";
+
+    const heroIdle = useImage(
+      require("../assets/Hero/Pink_Monster_Idle_4.png")
+    );
+    arr.push(heroIdle);
+
+    setHero(arr);
   }, []);
 
   return (
